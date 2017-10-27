@@ -1,5 +1,5 @@
 
-$(document).on("click", ".extras-tile", function() {
+$(document).on("click", ".extras-tile.seating", function() {
   $(".customise-trip").hide();
   scrollTo("body", 1);
   $(".seating-screen").show();
@@ -63,7 +63,7 @@ $(document).on("click", ".seat.available", function() {
   var rowLetter = $(".row-letter:eq(" + numberInRow + ")" ).text();
   var rowNumber = $(this).parent(".row").find(".row-number").text();
 
-  $(".guest.is-selected .guest-subtitle").text("Seat " + rowLetter + rowNumber);
+  $(".guest.is-selected .guest-subtitle").text("Siting in seat " + rowLetter + rowNumber);
 
 
   if ($(".guest.is-selected").hasClass("first")) {
@@ -78,13 +78,20 @@ $(document).on("click", ".seat.available", function() {
 
 
 $(document).on("click", ".seat-selection-actions .save-seats", function() {
+
+  // Scroll to top
+  scrollTo("body", 500);
+
   if ($(".seatmap").is(".melbourne.is-active")) {
     $(".seatmap.is-active").next(".seatmap").addClass("is-active");
     $(".seatmap:first").removeClass("is-active");
     $(".seat-selector-nav .item").removeClass("is-active");
     $(".seat-selector-nav .item:nth-child(2)").addClass("is-active");
   } else {
-    window.location.href = "customise.html?total=" + $("header .amount").text();
+    var g1Name = $(".guest:nth-child(1) .guest-name").text();
+    var g2Name = $(".guest:nth-child(2) .guest-name").text();
+    var extrasParams = "&g1=" + g1Name + "&g2=" + g2Name + "&seat=1";
+    window.location.href = "customise.html?total=" + $("header .amount").text() + extrasParams;
   }
 });
 

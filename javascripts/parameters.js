@@ -1,6 +1,7 @@
 // Delay load for HTML includes
 setTimeout(function() {
   updateTotalByParameter();
+  updateExtrasByParameter();
   getCurrentStep();
   resetFlightStrips();
 }, 500);
@@ -32,6 +33,12 @@ function updateTotalByParameter() {
     $(".amount.non-tax").html(nonTaxTotal.toFixed(2));
     $(".amount.tax-only").html(taxTotal.toFixed(2));
   }
+}
+
+function updateExtrasByParameter() {
+  if (getParameterByName("insurance") == 1){$(".extras-tile.travel-insurance").addClass("added")}
+  if (getParameterByName("seat") == 1){$(".extras-tile.seating").addClass("added")}
+  if (getParameterByName("baggage") == 1){$(".extras-tile.baggage").addClass("added")}
 }
 
 function getCurrentStep() {
