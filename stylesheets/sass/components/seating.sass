@@ -44,39 +44,50 @@ main
 .guest-panel 
   text-align: left
 
-.seat-selector
-  width: 18rem
-  margin: 0 auto
-  .seat-selector-letters
-    background: $bg-grey
-    li
-      padding: 1rem 0 0.5rem
-      &:hover
-        text-transform: uppercase
-      &.is-active
-        color: $va-red
+.seatmap
+  display: none
+  transition: all 0.3s ease
+  &.is-active
+    display: block
+  .seat-selector
+    width: 18rem
+    margin: 0 auto
+    .seat-selector-letters
+      background: $bg-grey
+      li
+        padding: 1rem 0 0.5rem
+        &:hover
+          text-transform: uppercase
+        &.is-active
+          color: $va-red
 
-    .row-letters
-      padding-left: 1.85rem
-      margin-bottom: 2rem
-      height: 1.4rem
-      border: 1px $border-grey solid
-      border-left: 0
-      border-right: 0
-      .row-letter
-        padding: 0.4rem 0
-        width: 2.5rem
-        &.aisle
-          padding-right: 0.55rem
-  .economy-x-row
-    height: 2.8rem
+      .row-letters
+        padding-left: 1.85rem
+        margin-bottom: 2rem
+        height: 1.4rem
+        border: 1px $border-grey solid
+        border-left: 0
+        border-right: 0
+        .row-letter
+          padding: 0.4rem 0
+          width: 2.5rem
+          &.aisle
+            padding-right: 0.55rem
+    .economy-x-row
+      height: 2.8rem
+      .row-number
+        padding-top: 1.3rem
     .row-number
-      padding-top: 1.3rem
-  .row-number
-    float: left
-    padding-top: 0.8rem
-    width: 1.4rem
-    text-align: center
-    +font-size(11)
+      float: left
+      padding-top: 0.8rem
+      width: 1.4rem
+      text-align: center
+      +font-size(11)
+    .row
+      .seat
+        &.selected
+          &:before
+            text-transform: uppercase
+            content: attr(data-guest-initials)
 
 
