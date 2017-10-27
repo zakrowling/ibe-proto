@@ -1,0 +1,51 @@
+$fare-elevate: #552442
+$fare-elevate-border: #b6a3af
+$fare-elevate-footer: #f3f0f2
+
+$fare-freedom: #2b3b46
+$fare-freedom-border: $medium-grey
+$fare-freedom-footer: #eff0f1
+
+.icons
+  margin: 3rem 0
+  &[data-fare-type="elevate"]
+    .included
+      color: $fare-elevate
+      &:before
+        color: $fare-elevate
+      span 
+        &:after
+          border-color: lighten($fare-elevate-border,20)
+          background: lighten($fare-elevate-border,20)
+        &:before
+          color: $fare-elevate
+    .paid
+      color: $fare-elevate
+      &:before
+        color: $fare-elevate
+      span 
+        &:after
+          border-color: lighten($fare-elevate-border,20)
+        &:before
+          color: $fare-elevate
+  &[data-fare-type="freedom"]
+    .icon.included
+      color: $fare-freedom
+      &:before
+        color: $fare-freedom
+      span 
+        &:after
+          border-color: lighten($fare-freedom-border,30)
+          background: lighten($fare-freedom-border,30)
+        &:before
+          color: $fare-freedom
+
+.fare-comparison-table
+  padding: 2rem 0
+
+div.component-explore
+  border: 0
+  position: fixed
+  right: 0
+  top: 35%
+  background: none

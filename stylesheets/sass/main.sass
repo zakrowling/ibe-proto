@@ -1,0 +1,75 @@
+@import ../../../styleguide/stylesheets/sass/_mixins
+@import components/header
+@import components/expanded-cart
+@import components/headings
+@import components/flight-strips
+@import components/fare-inclusions
+@import components/extras
+@import components/seating
+@import components/finalise
+
+@font-face 
+  font-family: 'icomoon'
+  src:  url('../assets/fonts/icomoon/icomoon.eot?1h4dky')
+  src:  url('../assets/fonts/icomoon/icomoon.eot?1h4dky#iefix') format('embedded-opentype'), url('../assets/fonts/icomoon/icomoon.ttf?1h4dky') format('truetype'), url('../assets/fonts/icomoon/icomoon.woff?1h4dky') format('woff'), url('../assets/fonts/icomoon/icomoon.svg?1h4dky#icomoon') format('svg')
+  font-weight: normal
+  font-style: normal
+
+
+[class^="icon-"], [class*=" icon-"]
+  font-family: 'icomoon' !important
+  speak: none
+  font-style: normal
+  font-weight: normal
+  font-variant: normal
+  text-transform: none
+  line-height: 1
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+body
+  background: #fafafa
+  overflow-x: hidden
+
+body.cart-expanded
+  overflow: hidden
+  .header:not(.sticky),
+  main
+    opacity: 0.2
+    -webkit-opacity: 0.2
+    filter: grayscale(100)
+    -webkit-filter: grayscale(100)
+    pointer-events: none
+    user-select: none
+
+
+main
+	position: relative
+	left: 0
+	width: 1400px
+	margin: 100px auto 100px
+	text-align: center
+
+.component
+  border: 0 !important
+  padding: 0 !important
+  width: auto !important
+  background: transparent !important
+
+.columns
+  width: 100%
+  margin: 0 auto
+  &.three-four
+    width: 74%
+  &.two
+    .column
+      float: left
+      width: 50%
+    .column.last
+      &.center
+        float: right
+        text-align: center
+
+.clear-both
+  clear: both
+  width: 100%

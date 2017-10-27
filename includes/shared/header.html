@@ -1,0 +1,48 @@
+<div class="component component-loading">
+  <div class="loading-bar"></div>
+</div>
+
+<html-include src="includes/shared/expanded-cart.html"></html-include>
+
+<header class="header">
+  <div class="header-fixed">
+    <div class="top-header">
+      <a href="select-flights.html?total=0" title="Seating" class="logo header-logo"><img src="http://vadigital.droppages.com/responsive/styleguide/assets/images/virgin-australia-logo.png" alt="Virgin Australia" />
+      </a>
+      <span class="header-title">
+        <em class="step" onclick="javascript:loadNextStep('select-flights')">Select flights</em>
+        <em class="step" onclick="javascript:loadNextStep('customise')">Customise trip</em>
+        <em class="step" onclick="javascript:loadNextStep('finalise')">Finalise booking</em>
+        <em class="step" onclick="javascript:loadNextStep('confirm')">Confirmation</em>
+      </span>
+      <nav class="header-nav">
+        <ul>
+          <li class="nav-help">
+            <a href="#" title="Help">Help</a>
+          </li>
+          <li class="nav-velocity">
+            <a href="#" title="Account">Account</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="header-search-cart">
+    <div class="header-search">
+      <a href="#" title="Edit search" class="header-search-edit">Edit search
+      </a>
+      <p class="search-detail">
+        <span>Two adults</span>
+        flying from
+        <span>Brisbane to Melbourne</span><em class="header-search-dates">, departing <span>Friday, February 11</span> and returning <span>Sunday, February 13.</span>
+        </em>
+      </p>
+    </div>
+    <div class="header-cart">
+      <div class="cart-detail">
+        <span class="cart-title"><em class="booking-title">Booking</em> Total</span>
+        <span class="cart-value">$<i class="amount">0</i>.00<em class="currency">AUD</em></span>
+      </div>
+    </div>
+  </div>
+</header>

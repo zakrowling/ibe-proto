@@ -1,0 +1,82 @@
+main
+  .seating-screen
+    width: 65rem
+    margin: 0 auto
+    .component-guest-panel,
+    .seat-selector-letters,
+    .aircraft-type
+      position: -webkit-sticky
+      position: sticky
+      z-index: 1000
+      top: 3.5rem
+    .component-guest-panel
+      float: left
+      top: 5rem
+      margin-top: 0
+    .aircraft-type
+      float: right
+      top: 4.2rem
+      .aircraft-section-indicator
+        position: absolute
+        top: 2.5rem
+        margin-left: 3rem
+        width: 2rem
+        height: 2rem
+        border: 1px $va-red solid
+      .aircraft-name
+        padding: 1rem 0
+      .aircraft-map
+        width: 18rem
+      .seat-selection-actions
+        line-height: 1.3rem
+        width: 18rem
+        .btn 
+          margin-top: 0.5rem
+
+.seat-selector-nav
+  text-align: center
+  margin: 2rem 0
+  .tab-menu
+    display: inline-block
+  .item
+    width: 16rem
+
+.guest-panel 
+  text-align: left
+
+.seat-selector
+  width: 18rem
+  margin: 0 auto
+  .seat-selector-letters
+    background: $bg-grey
+    li
+      padding: 1rem 0 0.5rem
+      &:hover
+        text-transform: uppercase
+      &.is-active
+        color: $va-red
+
+    .row-letters
+      padding-left: 1.85rem
+      margin-bottom: 2rem
+      height: 1.4rem
+      border: 1px $border-grey solid
+      border-left: 0
+      border-right: 0
+      .row-letter
+        padding: 0.4rem 0
+        width: 2.5rem
+        &.aisle
+          padding-right: 0.55rem
+  .economy-x-row
+    height: 2.8rem
+    .row-number
+      padding-top: 1.3rem
+  .row-number
+    float: left
+    padding-top: 0.8rem
+    width: 1.4rem
+    text-align: center
+    +font-size(11)
+
+

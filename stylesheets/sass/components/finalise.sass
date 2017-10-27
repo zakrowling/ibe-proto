@@ -1,0 +1,124 @@
+.review-booking
+  .header-cart
+  	&.review
+      float: none
+      box-shadow: none
+      display: inline-block
+      height: 6rem
+      &:hover
+        &:after
+          display: none
+.total-line-items
+  padding: 1rem 2.6rem 0
+  li
+    padding: 0
+    text-align: left
+    color: $medium-dark-grey
+    line-height: 2.4rem
+    font-weight: 400
+    border-bottom: 1px #e8e8e8 solid
+    +font-size(14)
+    strong
+      float: right
+      font-weight: 600
+      color: $fare-getaway
+
+.guest-disc
+  height: 3rem
+  line-height: 3rem
+  width: 3rem
+  color: #fff
+  border-radius: 100%
+  -webkit-border-radius: 100%
+  background: $fare-getaway
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3)
+
+.guest-form-details,
+.payment-form-details
+  padding-top: 10rem
+  clear: both
+  display: none
+  &.is-active
+    display: block
+    .guest-details-expanded
+      display: block
+    .guest-details-collapsed
+      display: none
+  &.is-collapsed
+    .guest-details-expanded
+      display: none
+    .guest-details-collapsed
+      display: block
+  strong
+    font-weight: 600
+  .message
+    max-width: 58%
+    margin: 2rem auto
+  .guest,
+  .payment
+    position: relative
+    border-top: 1px #e8e8e8 solid
+    &:first-of-type
+      border-top: 0
+      .guest-disc
+        top: 2%
+    .guest-disc
+      position: absolute
+      left: 20%
+      top: 19%
+  .input-fields
+    margin: 3rem 10rem 3rem 20rem
+  .input-group
+    float: left
+    margin: 0.3rem
+    &.half-width
+      width: 30%
+    &.small
+      width: 8.9rem
+    &.large
+      min-width: 20rem
+    &.x-large
+      min-width: 99.3%
+    &.last
+      margin-right: 0
+    .input-select
+      min-width: 8rem
+  .input-group-radio,
+  .input-group-checkbox,
+  .special-assistance
+    text-align: left
+    padding: 1.5rem 0
+  .passport-details
+    display: block
+    float: none
+    border-top: 1px #e8e8e8 dashed
+    min-height: 2.6rem
+    .special-assistance
+      float: right
+      +font-size(14)
+      color: $fare-getaway
+      &:hover
+        text-decoration: underline
+  .signup-fields
+    text-align: center
+    .input-group-checkbox
+      display: inline-block
+      float: none
+      label
+        line-height: 1.1rem
+        width: 90%
+        +font-size(13)
+
+  .payment-options
+    padding: 1.5rem 0
+  .payment
+    border-top: 0
+    padding: 2rem 3rem
+    .input-fields
+      margin: 2rem 14rem 3rem 14rem
+    .surcharge-disclaimer
+      clear: both
+      padding: 1rem 0 2rem
+  .complete-payment
+    clear: both
+    padding: 2rem 0

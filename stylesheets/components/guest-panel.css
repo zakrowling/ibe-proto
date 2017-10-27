@@ -1,0 +1,1 @@
+.guest .guest-details .guest-name:before{content:attr(placeholder);display:block}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=1400px">
+<title>Customise Trip - Responsive IBE Prototype</title>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://vadigital.droppages.com/responsive/styleguide/javascripts/all.js" type="text/javascript"></script>
+<link href="http://vadigital.droppages.com/responsive/styleguide/stylesheets/main.css.css" rel="stylesheet" type="text/css" />
+<link href="stylesheets/main.css" rel="stylesheet" type="text/css" />
+
+<script src="javascripts/parameters.js" type="text/javascript"></script>
+<script src="javascripts/product-selection.js" type="text/javascript"></script>
+<script src="javascripts/extras.js" type="text/javascript"></script>
+<script src="javascripts/header.js" type="text/javascript"></script>
+<script src="javascripts/html-include.js" type="text/javascript"></script>
+
+<script>
+  if ('registerElement' in document
+    && 'createShadowRoot' in HTMLElement.prototype
+    && 'import' in document.createElement('link')
+    && 'content' in document.createElement('template')) {
+    // We're using a browser with native WC support!
+  } else {
+    document.write('<script src="https:\/\/cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.5/webcomponents.min.js"><\/script>')
+  }
+</script>
+</head>
+
+
+<body class="customise" data-step-count="2">
+  <!-- Header -->
+  <div class="component-header">
+    <html-include src="includes/shared/header.html"></html-include>
+    <html-include src="includes/shared/mini-calendar.html"></html-include>
+  </div><!--component-header-->
+
+  <main>
+
+    <div class="customise-trip">
+    	<h1>Would you like to customise your trip</h1>
+      <span onclick="javascript:loadNextStep('finalise')" class="btn btn-p1">No thanks, finalise booking</span>
+      <html-include src="includes/extras/extras-tiles.html"></html-include>
+    </div>
+
+    <div class="seating-screen" style="display:none">
+      <html-include src="includes/extras/seating.html"></html-include>
+    </div>
+
+  </main>
+</body>
+</html>

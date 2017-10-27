@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=1400px">
+<title>Select Flights - Responsive IBE Prototype</title>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="http://vadigital.droppages.com/responsive/styleguide/javascripts/all.js" type="text/javascript"></script>
+<link href="http://vadigital.droppages.com/responsive/styleguide/stylesheets/main.css.css" rel="stylesheet" type="text/css" />
+<link href="stylesheets/main.css" rel="stylesheet" type="text/css" />
+
+<script src="javascripts/parameters.js" type="text/javascript"></script>
+<script src="javascripts/product-selection.js" type="text/javascript"></script>
+<script src="javascripts/header.js" type="text/javascript"></script>
+<script src="javascripts/html-include.js" type="text/javascript"></script>
+
+<script>
+  if ('registerElement' in document
+    && 'createShadowRoot' in HTMLElement.prototype
+    && 'import' in document.createElement('link')
+    && 'content' in document.createElement('template')) {
+    // We're using a browser with native WC support!
+  } else {
+    document.write('<script src="https:\/\/cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.5/webcomponents.min.js"><\/script>')
+  }
+</script>
+</head>
+
+
+<body class="select-flights" data-step-count="1">
+  <!-- Header -->
+  <div class="component-header">
+    <html-include src="includes/shared/header.html"></html-include>
+    <html-include src="includes/shared/mini-calendar.html"></html-include>
+  </div><!--component-header-->
+
+  <main>
+
+    <div class="select-flight departing">
+    	<h1 class="page-heading">Select your departing flight</h1>
+      <p class="mini-calendar-toggle">Flying on Friday, February 11</p>
+
+      <!-- Flight strips -->
+      <div class="featured-flight">
+        <span class="featured-flight-type">Lowest price today</span>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+      </div>
+      <ul class="flight-sorting">
+        <li class="price">Price</li>
+        <li class="departure">Departure time</li>
+        <li class="arrival">Arrival time</li>
+      </ul>
+      <div class="flight-strips">
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+      </div>
+    </div><!--select-departing-flight-->
+
+    <div class="select-flight-inclusions departing" style="display:none">
+      <h1 class="select-inclusions-title">Select inclusions for your <i>5</i>:05am flight</h1>
+      <!-- Fare inclusions -->
+      <html-include src="includes/product-selection/fare-tabs.html"></html-include>
+      <html-include src="includes/product-selection/fare-inclusions.html"></html-include>
+      <html-include src="includes/product-selection/helper.html"></html-include>
+      <span class="btn btn-p2">Display fare comparison table</span>
+    </div><!--select-flight-->
+
+    <div class="select-flight returning" style="display:none">
+      <div class="change-departure">
+        <h2 class="page-heading">Departing flight selected</h1>
+        <span class="btn btn-p2 alternative">Change flight</span>
+      </div>
+      <h1 class="page-heading">Select your returning flight</h1>
+      <p class="mini-calendar-toggle">Flying on Sunday, February 13</p>
+      
+      <!-- Flight strips -->
+      <div class="featured-flight">
+        <span class="featured-flight-type">Lowest price today</span>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+      </div>
+      <ul class="flight-sorting">
+        <li class="price">Price</li>
+        <li class="departure">Departure time</li>
+        <li class="arrival">Arrival time</li>
+      </ul>
+
+      <div class="flight-strips">
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+        <html-include src="includes/product-selection/flight-strip.html"></html-include>
+      </div>
+    </div><!--select-departing-flight-->
+
+    <div class="select-flight-inclusions returning" style="display:none">
+      <h1 class="select-inclusions-title">Select inclusions for your <i>5</i>:05am flight</h1>
+      <!-- Fare inclusions -->
+      <html-include src="includes/product-selection/fare-tabs.html"></html-include>
+      <html-include src="includes/product-selection/fare-inclusions.html"></html-include>
+      <html-include src="includes/product-selection/helper.html"></html-include>
+      <span class="btn btn-p2">Display fare comparison table</span>
+    </div><!--select-flight-->
+
+  </main>
+</body>
+</html>

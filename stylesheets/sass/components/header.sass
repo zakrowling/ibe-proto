@@ -1,0 +1,93 @@
+$max-header-width: 1400px
+
+body
+  &.loading
+    .loading-bar
+      display: block !important
+.component-loading
+  .loading-bar
+    position: fixed
+    top: 0
+    display: none
+    z-index: 10000
+
+.component-header
+  &.hide-search-cart
+    .header-search-cart
+      display: none
+  .header
+    &.sticky
+      position: fixed
+      z-index: 1000
+      .header-search-cart
+        text-align: center
+      .header-fixed,
+      .header-search-dates,
+      .header-search-edit,
+      .booking-title,
+      .currency
+        display: none
+      .header-search,
+      .header-cart
+        display: inline-block
+        height: 3.5rem
+        float: none
+        margin-bottom: -3px
+      .header-search
+        text-align: center
+        padding: 0 5rem
+        min-width: 40rem
+        width: auto
+        margin-right: -5px
+        .search-detail
+          font-size: 1.2rem
+      .header-cart
+        &:after
+          top: 0.6rem
+          right: 0.6rem
+        .cart-detail
+          top: 32%
+          transform: translate(0)
+          left: auto
+          width: 100%
+        .cart-title
+          font-size: 1rem
+        .cart-value
+          top: 0
+          .amount
+            top: 0
+            letter-spacing: 0
+            font-size: inherit
+
+  .top-header
+    max-width: $max-header-width
+    height: 3.5rem
+    margin: 0 auto
+    .header-title
+      .step
+        &:hover
+          cursor: pointer
+
+  .header-search-cart
+    max-width: $max-header-width
+    margin: 0 auto
+    .header-search
+      border-left: 1px solid #e8e8e8
+    .header-cart
+      border-right: 1px solid #e8e8e8
+      &.review
+        float: none
+        box-shadow-color: transparent
+        -webkit-box-shadow-color: transparent
+
+  .mini-calendar
+    opacity: 0
+    position: relative
+    top: 55px
+    z-index: -1
+    margin: 0 auto
+    max-width: $max-header-width
+    background: #fff
+    &.is-active
+      opacity: 1
+      z-index: 1
