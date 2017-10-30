@@ -30,3 +30,13 @@ $(document).on("click", ".mini-calendar-toggle", function() {
   scrollTo("body", 1);
   $(".mini-calendar").toggleClass("is-active");
 });
+
+
+$(document).on("click", ".toggle-fee-disclaimer", function() {
+  $("html").toggleClass("has-fee-disclaimer");
+  scrollTo("html", 300);
+});
+
+$(document).on("click", ".fee-disclaimer .dismiss", function() {
+  $("html").removeClass("has-fee-disclaimer");
+});

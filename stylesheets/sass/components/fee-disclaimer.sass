@@ -1,0 +1,26 @@
+html
+  &.has-fee-disclaimer
+    padding-top: 110px
+    .fee-disclaimer
+      display: block
+
+.fee-disclaimer
+  display: none
+  position: absolute
+  top: -110px
+  z-index: 10000
+  background: $va-purple
+  width: 100%
+  border-bottom: 1px $border-grey solid
+  +font-size(12)
+  padding: 1.5rem 0
+  .disclaimer
+    width: 1400px
+    margin: 0 auto
+    color: #fff
+    a
+      cursor: pointer
+      color: #fff 
+      text-decoration: underline
+      &:hover
+        opacity 0.8

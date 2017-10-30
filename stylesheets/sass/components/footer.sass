@@ -1,0 +1,37 @@
+footer
+  width: 100%
+  background: $light-grey
+  color: $medium-grey
+  margin-top: 100px
+  font-weight: 400
+  overflow: hidden
+  padding: 1.2rem 0
+  +font-size(12)
+  .container
+    width: $page-max-width
+    margin: 0 auto
+    a
+      font-family: $montserrat
+      margin-right: 0.5rem
+      color: $va-red
+    .icon-links
+      float: left
+      a
+        margin-right: 1rem
+        color: $medium-grey
+        &:hover
+          opacity: 0.8
+        &:before
+          content: ""
+          font-family: icomoon
+          display: inline-block;
+          margin-right: 0.5rem;
+          position: relative;
+          top: 0.08rem;
+        &.contact
+          &:before
+            content: ""
+
+    .copyright
+      float: right
+      padding-top: 2px
