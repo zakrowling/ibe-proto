@@ -27,14 +27,6 @@ $(document).on("click", ".header-shopping-cart", function() {
 
 
 $(document).on("click", ".mini-calendar-toggle", function() {
-	$(".mini-calendar").toggleClass("is-active");
+  scrollTo("body", 1);
+  $(".mini-calendar").toggleClass("is-active");
 });
-
-
-function loadNextStep(pageName) {
-  pageDelay = 2000;
-  $("body").addClass("loading");
-  setTimeout(function() {
-    window.location = pageName + '.html'+window.location.search
-  }, pageDelay);
-}

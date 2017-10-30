@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" viewBox="0 0 18 18" xml:space="preserve" enable-background="new 0 0 18 18">
+  <style type="text/css">
+  	.line {
+      fill:none;
+      stroke:#40403f;
+      stroke-width:1.5;
+      stroke-linecap:round;
+      stroke-miterlimit:10;
+    }
+  </style>
+  <line class="line" x1="8.9" y1="12" x2="13.9" y2="8"/>
+  <line class="line" x1="8.9" y1="12" x2="3.9" y2="8"/>
+</svg>

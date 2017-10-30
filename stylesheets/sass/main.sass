@@ -42,7 +42,6 @@ body.cart-expanded
     pointer-events: none
     user-select: none
 
-
 main
 	position: relative
 	left: 0
@@ -73,3 +72,39 @@ main
 .clear-both
   clear: both
   width: 100%
+
+
+.down-arrow-label,
+.edit-label
+  padding-right: 18px
+  background: url(../assets/svgs/i-arrow-down.svg) no-repeat right top
+  background-size: 16px
+  cursor: pointer
+  &.red-label
+    background-image: url(../assets/svgs/i-arrow-down-red.svg)
+    color: $va-red
+  &:hover
+    opacity: 0.8
+
+.edit-label
+  color: $va-red
+  background: url(../assets/svgs/i-edit.svg) no-repeat right center
+  background-size: 11px
+
+
+.total-line-items
+  padding: 1rem 2.6rem 0
+  li
+    padding: 0
+    text-align: left
+    color: $medium-dark-grey
+    line-height: 2.4rem
+    font-weight: 400
+    border-bottom: 1px #e8e8e8 solid
+    +font-size(14)
+    strong
+      float: right
+      font-weight: 600
+      color: $fare-getaway
+      &.empty
+        color: $medium-dark-grey

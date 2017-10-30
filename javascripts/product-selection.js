@@ -30,7 +30,7 @@ $(document).on("click", ".faretab .btn", function() {
     if (flightCount < 2) {
       $(".select-flight-inclusions").next("div").show();
     } else {
-      window.location.href = "customise.html?total=" + $("header .amount").text();
+      loadNextStep('customise');
     }
 
     $(".header-cart").removeClass("is-active");
@@ -70,7 +70,7 @@ $(document).on("click", ".faretab", function() {
 
 function resetFlightStrips() {
   var fromPrice = 105;
-  var departHour = 3;
+  var departHour = 4;
   var totalFlights = $(".flight-strips .flight-strip-group").length + 1;
   for (count = 1; count < totalFlights; count++) {
     departHour += 1;

@@ -1,9 +1,15 @@
-
-$(document).on("click", ".extras-tile.seating", function() {
+// Show each extras screen
+$(document).on("click", ".extras-tile", function() {
+  var getExtrasTile = $(this).attr("data-extras-tile");
   $(".customise-trip").hide();
   scrollTo("body", 1);
-  $(".seating-screen").show();
+  $("." + getExtrasTile + "-screen").show();
 });
+
+
+// =======================
+// Seating screen
+// =======================
 
 // Aircraft section indicator
 var aircraftPosition = 0;
@@ -113,6 +119,10 @@ $(document).on("click", ".seat-selector-nav .item", function() {
   $(".seatmap.is-active").removeClass("is-active");
   $(".seatmap." + getFlightSeatmap).addClass("is-active");
 
+  // Update guest panel to make first active
+  $(".guest").removeClass("is-active");
+  $(".guest:nth-child(1)").addClass("is-selected");
+
   $(".guest-subtitle").text("Select a seat");
 });
 
@@ -139,4 +149,52 @@ $(document).on("click", ".guest .btn", function() {
   }
 
   $(this).parents(".guest").find(".guest-initial").text(getGuestInitials.join(''));
+});
+
+
+
+
+// =======================
+// Baggage screen
+// =======================
+
+
+var bagTotal = 0;
+var bagLimit = 5;
+var bagBaseCost = 35;
+var bagTotalCost = 0;
+
+function updateBaggage(bagTotalCost) {
+  $(".baggage-selector .count").html(bagTotal);
+  if (bagTotalCost) {
+    $(".baggage-charge .amount-message").text('$' + bagTotalCost + '.00 will be added');
+  } else {
+    $(".baggage-charge .amount-message").text('No extra cost');
+    $(".baggage-selector .count-baggage").addClass('none');
+    $(".baggage-selector .remove-baggage").addClass('disabled');
+  }
+  if (bagTotal == bagLimit) {
+    $('.baggage-selector .add-baggage').addClass('disabled');
+  }
+}
+
+// Add baggage
+$(document).on("click", ".add-baggage", function() {
+  if (bagTotal < bagLimit) {
+    $(".baggage-selector .remove-baggage").removeClass('disabled');
+    $(".baggage-selector .count-baggage").removeClass('none');
+    bagTotal++;
+    bagTotalCost = bagBaseCost * bagTotal;
+    updateBaggage(bagTotalCost)
+  }
+});
+
+// Remove baggage
+$(document).on("click", ".remove-baggage", function() {
+  if (bagTotal) {
+    $(".baggage-selector .add-baggage").removeClass('disabled');
+    bagTotal--;
+    bagTotalCost -= bagBaseCost;
+    updateBaggage(bagTotalCost)
+  }
 });
