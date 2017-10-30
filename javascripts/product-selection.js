@@ -38,7 +38,6 @@ $(document).on("click", ".faretab .btn", function() {
   }, pageDelay);
 
   // Update cart with transition
-  $(".header-cart").addClass("is-active");
   addToCart = $(this).attr("data-fare-amount");
   updateCartTotal(addToCart);
   return false;

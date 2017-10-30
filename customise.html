@@ -37,16 +37,20 @@
 
     <div class="customise-trip">
     	<h1>Would you like to customise your trip?</h1>
-      <span onclick="javascript:loadNextStep('finalise')" class="btn btn-p1">No thanks, finalise booking</span>
+      <span onclick="javascript:loadNextStep('finalise')" class="btn btn-p1 continue-to-finalise">Continue to finalise</span>
       <html-include src="includes/extras/extras-tiles.html"></html-include>
     </div>
 
-    <div class="seating-screen" style="display:none">
+    <div class="seating-screen guest-details-required" style="display:none">
       <html-include src="includes/extras/seating.html"></html-include>  
     </div>
 
     <div class="baggage-screen" style="display:none">
       <html-include src="includes/extras/baggage.html"></html-include>  
+    </div>
+
+    <div class="travel-insurance-screen" style="display:none">
+      <html-include src="includes/extras/travel-insurance.html"></html-include>  
     </div>
 
   </main>

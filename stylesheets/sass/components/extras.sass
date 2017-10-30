@@ -1,10 +1,45 @@
+.guest-details-required
+	h1,
+	.seat-selector-nav,
+	.aircraft-type,
+	.seatmap
+		opacity: 0.2
+		filter: grayscale(1)
+		pointer-events: none
+	.component-guest-panel
+		box-shadow: 0px 0px 4rem 0.5rem lighten($va-red, 50%)
+		.guest-panel
+			border-color: lighten($va-red, 40%)
+
+
 .component-guest-panel
   float: left
   .guest-panel
     text-align: left
+    .guest
+    	&.is-closed
+	    	.guest-form
+	    		display: none !important
+
 
 .component-baggage-selector
   float: left
   margin-top: 2.5rem
+  margin-bottom: 2rem
   .baggage-selector-title
     padding-bottom: 1rem
+
+.baggage-screen
+	.baggage-total
+		float: left
+		width: 20rem
+		.total-line-items
+			padding: 1rem 1.2rem 0 1.5rem
+			li
+				font-weight: 300
+				+font-size(12)
+				strong, i
+					color: $medium-dark-grey
+  .micro
+  	width: 34rem
+  	margin: 0 auto 2rem

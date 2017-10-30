@@ -6,6 +6,21 @@ $fare-freedom: #2b3b46
 $fare-freedom-border: $medium-grey
 $fare-freedom-footer: #eff0f1
 
+.no-tier
+  .fare-box
+    border: 1px $border-grey solid
+    &:before
+      border-color: $medium-grey transparent transparent transparent
+    &:hover
+      border-color: $medium-light-grey
+    .fare-details,
+    .fare-footer
+      color: $medium-grey      
+  .btn-p1
+    background: $medium-grey
+           
+
+
 .icons
   margin: 3rem 0
   &[data-fare-type="elevate"]

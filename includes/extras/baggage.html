@@ -1,11 +1,17 @@
 <h1 class="page-heading">Would you like additional baggage?</h1>
 <p>Each guest has 1 x 23kg bag already included in your fare but you can purchase additional baggage for $35.00 per bag per flight.</p>
 
-<html-include src="includes/shared/guest-panel.html"></html-include>
+<div class="baggage-total">
+  <html-include src="includes/shared/guest-panel.html"></html-include>
+  <ul class="total-line-items">
+    <li>Total additional baggage<strong class="total-bag-count">0</strong></li>
+    <li>Total additional cost<strong>$<i class="total-bag-cost">0</i>.00</strong></li>
+  </ul>
+</div>
 
 <div class="component-baggage-selector">
   <h4 class="baggage-selector-title">Brisbane to Melbourne</h4>
-  <div class="baggage-selector brisbane">
+  <div class="baggage-selector melbourne" data-bag-flight="melbourne">
     <div class="count-baggage none">
       <div class="bags">
         <div class="count">0</div>
@@ -26,7 +32,7 @@
 
 <div class="component-baggage-selector">
   <h4 class="baggage-selector-title">Melbourne to Brisbane</h4>
-  <div class="baggage-selector">
+  <div class="baggage-selector brisbane" data-bag-flight="brisbane">
     <div class="count-baggage none">
       <div class="bags">
         <div class="count">0</div>
@@ -48,4 +54,4 @@
 <p class="micro message">Please check you have entered your Velocity Frequent Flyer number to understand your baggage entitlements, which if applicable will be shown. Additional allowances can be pre-purchased online or via the Virgin Australia Guest Contact Centre (where a service fee may apply). Additional allowance purchased at the airport, or pieces exceeding your inclusions, will attract higher airport charges when checking in.</p>
 
 <span class="btn btn-p2">Cancel</span>
-<span class="btn btn-p1">Save all and continue</span>
+<span class="btn btn-p1 save-baggage">Save all and continue</span>

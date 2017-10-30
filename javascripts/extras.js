@@ -17,6 +17,7 @@ $(window).scroll(function(){
   var vScroll = $(window).scrollTop();
   var positionSpeed = 1;
 
+  // Manually set scroll position
   if (vScroll < 200) {
     $(".aircraft-section-indicator").animate({left: '0'}, positionSpeed);
   }
@@ -52,10 +53,12 @@ $(window).scroll(function(){
 
 
 // Guest initials on seatmap
+var seatCount = 0;
 $(document).on("click", ".seat.available", function() {
+  seatCount++;
 
   var activeSeatmap = $(".seat-selector-nav .item").attr("data-seatmap-flight");
-  var activeGuestInitials = $(".guest.is-selected .guest-initial").text();
+  var activeGuestInitials = $(".guest.is-selected .guest-initial").text().substr(0, 2);
   $(this).attr("data-guest-initials", activeGuestInitials);
 
   $(".seat[data-guest-initials=" + activeGuestInitials + "]").addClass("available");
@@ -69,15 +72,16 @@ $(document).on("click", ".seat.available", function() {
   var rowLetter = $(".row-letter:eq(" + numberInRow + ")" ).text();
   var rowNumber = $(this).parent(".row").find(".row-number").text();
 
-  $(".guest.is-selected .guest-subtitle").text("Siting in seat " + rowLetter + rowNumber);
+  $(".guest.is-selected .guest-subtitle").text("Sitting in seat " + rowLetter + rowNumber);
 
 
-  if ($(".guest.is-selected").hasClass("first")) {
+  if (seatCount == 1) {
     $(".guest.is-selected").next(".guest").addClass("is-selected");
     $(".guest.is-selected:first").removeClass("is-selected");
   } else {
-    $(".guest.is-selected").prev(".guest").addClass("is-selected");
+    $(".guest.first").addClass("is-selected");
     $(".guest.is-selected.last").removeClass("is-selected");
+    seatCount = 0;
   }
 
 });
@@ -94,10 +98,19 @@ $(document).on("click", ".seat-selection-actions .save-seats", function() {
     $(".seat-selector-nav .item").removeClass("is-active");
     $(".seat-selector-nav .item:nth-child(2)").addClass("is-active");
   } else {
+    var currentURLParameters = window.location.search;
     var g1Name = $(".guest:nth-child(1) .guest-name").text();
     var g2Name = $(".guest:nth-child(2) .guest-name").text();
-    var extrasParams = "&g1=" + g1Name + "&g2=" + g2Name + "&seat=1";
-    window.location.href = "customise.html?total=" + $("header .amount").text() + extrasParams;
+    currentURLParameters = updateParameterByName("g1", g1Name, currentURLParameters);
+    currentURLParameters = updateParameterByName("g2", g2Name, currentURLParameters);
+    currentURLParameters = updateParameterByName("seat", 1, currentURLParameters);
+
+    pageDelay = 2000;
+    $("body").addClass("loading");
+    setTimeout(function() {
+      window.location = 'customise.html' + currentURLParameters;
+    }, pageDelay);
+
   }
 });
 
@@ -122,30 +135,53 @@ $(document).on("click", ".seat-selector-nav .item", function() {
   // Update guest panel to make first active
   $(".guest").removeClass("is-active");
   $(".guest:nth-child(1)").addClass("is-selected");
-
-  $(".guest-subtitle").text("Select a seat");
 });
 
 // Guest panel
 $(document).on("click", ".guest-details, .guest-initial", function() {
-  $(".guest").removeClass("is-active is-selected");
-  $(this).parent(".guest").addClass("is-active is-selected");
-  $(this).find("guest-name").focus();
+  if (editGuestDetails) {
+    $(".guest").removeClass("is-active is-selected");
+    $(this).parent(".guest").addClass("is-active is-selected");
+    $(this).find("guest-name").focus();
+  }
 
+  // Disable enter key
   $('html').bind('keypress', function(e){
-    if (e.keyCode == 13){
-      return false;
-    }
+    if (e.keyCode == 13){ return false; }
   });
 });
 
+var guestNameCount = 0;
 $(document).on("click", ".guest .btn", function() {
+
+  guestNameCount++;
+
   $(".guest").removeClass("is-active");
+
+  if (guestNameCount == 1) {
+    // Make sure this panel never reopens
+    $(".guest").removeClass("is-active is-selected");
+    $(this).parents(".guest").addClass("is-closed");
+    $(this).parents(".guest").next(".guest").addClass("is-active is-selected");
+    focusOnGuestName(2);
+  } else {
+    // Remove seatmap overlay
+    $(".seating-screen").removeClass("guest-details-required");
+    editGuestDetails = false;
+
+    // Make first guest selected
+    $(".guest:nth-child(2)").removeClass("is-active is-selected");
+    $(".guest:nth-child(1)").addClass("is-selected");
+    $(".guest-subtitle").text("Select a seat");
+    focusOnGuestName(0);
+  }
+
+  // Get guest details
   var getGuestName = $(this).parents(".guest").find(".guest-name").text();
   var getGuestInitials = getGuestName.match(/\b(\w)/g);
 
   if (getGuestName.length) {
-    $(this).parents(".guest").find(".guest-subtitle").text("Select a seat");
+    $(this).parents(".guest").find(".guest-subtitle").text("Guest name saved");
   }
 
   $(this).parents(".guest").find(".guest-initial").text(getGuestInitials.join(''));
@@ -158,43 +194,109 @@ $(document).on("click", ".guest .btn", function() {
 // Baggage screen
 // =======================
 
-
-var bagTotal = 0;
 var bagLimit = 5;
 var bagBaseCost = 35;
 var bagTotalCost = 0;
+var totalBagCount = 0;
 
-function updateBaggage(bagTotalCost) {
-  $(".baggage-selector .count").html(bagTotal);
+function updateBaggage(bagTotalCost, bagTotal, bagFlight) {
+  $(".baggage-selector." + bagFlight).find(".count").text(bagTotal);
   if (bagTotalCost) {
-    $(".baggage-charge .amount-message").text('$' + bagTotalCost + '.00 will be added');
+    $(".baggage-selector." + bagFlight).next(".baggage-charge").find(".amount-message").text('$' + bagTotalCost + '.00 will be added');
   } else {
-    $(".baggage-charge .amount-message").text('No extra cost');
-    $(".baggage-selector .count-baggage").addClass('none');
-    $(".baggage-selector .remove-baggage").addClass('disabled');
+    $(".baggage-selector." + bagFlight).next(".baggage-charge").find(".amount-message").text('No extra cost');
+    $(".baggage-selector." + bagFlight).find(".count-baggage").addClass('none');
+    $(".baggage-selector." + bagFlight).find(".remove-baggage").addClass('disabled');
   }
   if (bagTotal == bagLimit) {
-    $('.baggage-selector .add-baggage').addClass('disabled');
+    $(".baggage-selector." + bagFlight).find(".add-baggage").addClass('disabled');
   }
 }
 
 // Add baggage
 $(document).on("click", ".add-baggage", function() {
+
+  var bagTotal = parseInt($(this).parent(".baggage-selector").find(".count").text());
+ 
+  // Update total bag count
+  totalBagCount += 1;
+  var totalBagCost = totalBagCount * bagBaseCost;
+  $(".total-line-items .total-bag-count").text(totalBagCount);
+  $(".total-line-items .total-bag-cost").text(totalBagCost);
+
+
   if (bagTotal < bagLimit) {
-    $(".baggage-selector .remove-baggage").removeClass('disabled');
-    $(".baggage-selector .count-baggage").removeClass('none');
+    $(this).parent(".baggage-selector").find(".remove-baggage").removeClass('disabled');
+    $(this).parent(".baggage-selector").find(".count-baggage").removeClass('none');
     bagTotal++;
     bagTotalCost = bagBaseCost * bagTotal;
-    updateBaggage(bagTotalCost)
+    bagFlight = $(this).parent(".baggage-selector").attr("data-bag-flight");
+    updateBaggage(bagTotalCost, bagTotal, bagFlight);
   }
 });
 
 // Remove baggage
 $(document).on("click", ".remove-baggage", function() {
+
+  var bagTotal = parseInt($(this).parent(".baggage-selector").find(".count").text());
+
+  // Update total bag count
+  totalBagCount -= 1;
+  var totalBagCost = totalBagCount * bagBaseCost;
+  $(".total-line-items .total-bag-count").text(totalBagCount);
+  $(".total-line-items .total-bag-cost").text(totalBagCost);
+
   if (bagTotal) {
-    $(".baggage-selector .add-baggage").removeClass('disabled');
+    $(this).parent(".baggage-selector").find(".add-baggage").removeClass('disabled');
     bagTotal--;
     bagTotalCost -= bagBaseCost;
-    updateBaggage(bagTotalCost)
+    bagFlight = $(this).parent(".baggage-selector").attr("data-bag-flight");
+    updateBaggage(bagTotalCost, bagTotal, bagFlight);
   }
+});
+
+
+// Save baggage
+$(document).on("click", ".save-baggage", function() {
+  var currentURLParameters = window.location.search;
+  var totalBaggageCost = parseInt($(".baggage-screen .total-bag-cost").text());
+  var newCartTotal = totalBaggageCost + parseInt($("header .amount").text());
+
+  currentURLParameters = updateParameterByName("baggage", totalBaggageCost, currentURLParameters);
+  currentURLParameters = updateParameterByName("total", newCartTotal, currentURLParameters);
+
+  // Update cart with baggage
+  updateCartTotal(totalBaggageCost);
+
+  pageDelay = 2000;
+  $("body").addClass("loading");
+  setTimeout(function() {
+    window.location = 'customise.html' + currentURLParameters;
+  }, pageDelay);
+});
+
+
+
+
+// =======================
+// Travel Insurance screen
+// =======================
+
+// Save insurance tier
+$(document).on("click", ".travel-insurance-tiers .btn", function() {
+  var currentURLParameters = window.location.search;
+  var insuranceCost = parseInt($(this).attr("data-fare-amount"));
+  var newCartTotal = insuranceCost + parseInt($("header .amount").text());
+
+  currentURLParameters = updateParameterByName("insurance", insuranceCost, currentURLParameters);
+  currentURLParameters = updateParameterByName("total", newCartTotal, currentURLParameters);
+
+  // Update cart with transition
+  updateCartTotal(insuranceCost);
+
+  pageDelay = 2000;
+  $("body").addClass("loading");
+  setTimeout(function() {
+    window.location = 'customise.html' + currentURLParameters;
+  }, pageDelay);
 });
