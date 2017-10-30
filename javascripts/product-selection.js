@@ -67,6 +67,17 @@ $(document).on("click", ".faretab", function() {
   }
 });
 
+
+// Explore fares
+
+$(document).on("click", ".select-flight-inclusions .explore, .select-flight-inclusions .icon", function() {
+  $(".select-flight-inclusions .explore-overlay").fadeIn(500);
+});
+
+$(document).on("click", ".explore-overlay", function() {
+  $(".select-flight-inclusions .explore-overlay").fadeOut(500);
+});
+
 function resetFlightStrips() {
   var fromPrice = 105;
   var departHour = 4;

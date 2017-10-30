@@ -109,9 +109,9 @@ function removeEditableGuestNames() {
 }
 
 function updateExtrasByParameter() {
-  if (getParameterByName("insurance") > 1){$(".extras-tile.travel-insurance").addClass("added")}
+  if (getParameterByName("insurance") > 0){$(".extras-tile.travel-insurance").addClass("added")}
   if (getParameterByName("seat") == 1){$(".extras-tile.seating").addClass("added")}
-  if (getParameterByName("baggage") > 1){$(".extras-tile.baggage").addClass("added")}
+  if (getParameterByName("baggage") > 0){$(".extras-tile.baggage").addClass("added")}
 }
 
 function getCurrentStep() {

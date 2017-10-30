@@ -22,6 +22,7 @@
 	    		display: none !important
 
 
+
 .component-baggage-selector
   float: left
   margin-top: 2.5rem
@@ -40,6 +41,41 @@
 				+font-size(12)
 				strong, i
 					color: $medium-dark-grey
-  .micro
-  	width: 34rem
-  	margin: 0 auto 2rem
+.baggage-disclaimer
+	width: 34rem
+	margin: 0 auto 2rem
+
+
+
+$covermoreblue: #035c9e
+.travel-insurance-screen
+
+  .page-heading
+    color: $covermoreblue
+
+  .faretab:not(:first-child)
+    .fare-box
+      border-color: lighten($covermoreblue, 50%)
+      &:before
+        border-color: $covermoreblue transparent transparent transparent
+    .fare-details,
+    .fare-footer
+      color: $covermoreblue
+      .footer-cash
+        background-color: lighten($covermoreblue, 65%)
+    .btn-p1
+      background-color: $covermoreblue
+
+  .icons
+    .icon
+      &.included
+        &:before
+          color: $covermoreblue
+        span
+          &:before
+            color: $covermoreblue
+          &:after
+            border-color: lighten($covermoreblue, 50%)
+            background-color: lighten($covermoreblue, 65%)
+        figcaption
+          color: $covermoreblue
